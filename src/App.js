@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './App.css';
 
 function App() {
+  const [videos, setVideos] = useState([
+    { title: 'Car insurance', price: 267.13},
+    { title: 'MOT', price: 132.16},
+    { title: 'Exhaust', price: 50.31}
+  ]);
+
+  useEffect(() => {
+    getVideos();
+  }, []);
+
+  const getVideos = () =>
+    fetch("http://localhost:3000/api/v1/youtube_videos", {
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setVideos(data))
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {videos?.map((video, i) => (
+        <p>{video.genre}</p>
+      ))}
     </div>
   );
 }
