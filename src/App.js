@@ -5,7 +5,6 @@ import WordContainer from './words/WordContainer';
 
 function App() {
   const [videos, setVideos] = useState(null);
-  // const [randomWord, setRandomWord] = useState(null);
 
   useEffect(() => {
     getVideos();
@@ -18,15 +17,9 @@ function App() {
         Accepts: "application/json",
       },
     })
-      .then((response) => response.json())
-      .then((data) => setVideos(data))
+    .then((response) => response.json())
+    .then((data) => setVideos(data))
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-    // console.log('hey');
-  // }
-
-  // let randomWord
 
   // const getRhymingWords = () => {
     // fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${thing}`)

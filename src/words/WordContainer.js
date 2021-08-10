@@ -4,7 +4,7 @@ class wordContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {words: [], randomWord: 'before'}
+    this.state = {words: [], randomWord: 'before', rhymingWords: []}
   }
 
   componentDidMount() {
@@ -18,21 +18,34 @@ class wordContainer extends Component {
         Accepts: "application/json",
       },
     })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({words: data}, () => {
-          this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name})
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({words: data}, () => {
+        this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name}, () => {
+          this.getRhymingWords();
         })
       })
-      // .then(getRhymingWords())
+    })
+  }
+
+  getRhymingWords = () => {
+    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}`)
+    .then((response) => response.json())
+    .then((data) => this.setState({rhymingWords: data}))
   }
 
   render() {
-    // return this.state.words.map((word, i) => {
-    //   return <p>{word.name}</p>
-    // })
-    return <h1>{this.state.randomWord}</h1>
-    // return <h1>Hello, {this.state[1]?.words.name}</h1>;
+    // return (
+    //   <div>
+    //     <h1>{this.state.randomWord}</h1>
+    //     <ul>
+    //       {this.state.rhymingWords.map((word, i))}
+    //     </ul>
+    //   </div>
+    // )
+    return this.state.rhymingWords.map((word, i) => {
+      return <p>{word["word"]}</p>
+    })
   }
 }
 
