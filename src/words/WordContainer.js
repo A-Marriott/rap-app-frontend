@@ -6,20 +6,10 @@ class wordContainer extends Component {
     super(props)
     this.state = {words: [], randomWord: 'before'}
   }
-  // if (props.words) {
-    // return <h3>{props.words[Math.floor(Math.random() * props.words.length)].name}</h3>
-  // }
 
   componentDidMount() {
     this.getWords();
   }
-
-  // componentDidUpdate() {
-  //   // if (!this.props.randomWord) {
-  //     // this.getRandomWord();
-  //   // }
-  //   console.log('hey');
-  // }
 
   getWords = () => {
     fetch("http://localhost:3000/api/v1/words", {
@@ -31,16 +21,11 @@ class wordContainer extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({words: data}, () => {
-          this.setState()
+          this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name})
         })
       })
-      // .then(setRandomWord(words[Math.floor(Math.random() * words.length)].name))
       // .then(getRhymingWords())
   }
-
-  // getRandomWord = () => {
-  //   this.setState({randomWord: 'after'})
-  // }
 
   render() {
     // return this.state.words.map((word, i) => {
