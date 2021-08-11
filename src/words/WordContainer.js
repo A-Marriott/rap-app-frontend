@@ -4,7 +4,7 @@ class wordContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {words: [], randomWord: 'before', rhymingWords: []}
+    this.state = {words: [], randomWord: '', rhymingWords: []}
   }
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class wordContainer extends Component {
   }
 
   getRhymingWords = () => {
-    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}`)
+    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=50`)
     .then((response) => response.json())
     .then((data) => this.setState({rhymingWords: data}))
   }
