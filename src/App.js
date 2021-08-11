@@ -5,7 +5,9 @@ import WordContainer from './words/WordContainer';
 
 function App() {
   const [videos, setVideos] = useState(null);
-  const [filteredVideos, setFilteredVideos] = useState(null)
+  const [filteredVideos, setFilteredVideos] = useState(null);
+  const [randomVideo, setRandomVideo] = useState(null);
+  const [playedVideos, setPlayedVideos] = useState(null);
 
   useEffect(() => {
     getVideos();
@@ -22,21 +24,33 @@ function App() {
     .then((data) => {
       setVideos(data)
       setFilteredVideos(data)
+      randomiseVideo(data)
     })
-  }
+  };
+
+  const randomiseVideo = (videoArray) => {
+    setRandomVideo(videoArray[Math.floor(Math.random() * videoArray.length)].video_id)
+  };
 
   const chooseGenre = (event) => {
     if (event.target.id === 'random') {
       setFilteredVideos(videos)
+      randomiseVideo(filteredVideos)
     } else {
-    setFilteredVideos(videos.filter(video => video.genre === event.target.id))
+      setFilteredVideos(videos.filter(video => video.genre === event.target.id))
+      randomiseVideo(filteredVideos)
     }
+  };
+
+  const skipSong = () => {
+
   };
 
   return (
     <div className="App">
       { filteredVideos && <iframe id="player" width="640" height="390"
-      src={`https://www.youtube.com/embed/${filteredVideos[Math.floor(Math.random() * filteredVideos.length)].video_id}?autoplay=1&loop=1`}></iframe>}
+      src={`https://www.youtube.com/embed/${randomVideo}?autoplay=1&loop=1`}></iframe>}
+      <button onClick={skipSong}>Skip song</button>
       <button id="trap" onClick={chooseGenre}>Trap</button>
       <button id="boombap" onClick={chooseGenre}>Boombap</button>
       <button id="drill" onClick={chooseGenre}>Drill</button>
