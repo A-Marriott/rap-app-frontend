@@ -35,17 +35,16 @@ class wordContainer extends Component {
   }
 
   render() {
-    // return (
-    //   <div>
-    //     <h1>{this.state.randomWord}</h1>
-    //     <ul>
-    //       {this.state.rhymingWords.map((word, i))}
-    //     </ul>
-    //   </div>
-    // )
-    return this.state.rhymingWords.map((word, i) => {
-      return <p>{word["word"]}</p>
-    })
+    return (
+      <div>
+        <h1>{this.state.randomWord}</h1>
+        <ul>
+          {this.state.rhymingWords.map((word, i) => {
+            return <li>{word["word"]}</li>
+          })}
+        </ul>
+      </div>
+    )
   }
 }
 
