@@ -27,7 +27,12 @@ class VideoContainer extends Component {
   }
 
   randomiseVideo = (videoArray) => {
-    this.setState({randomVideo: videoArray[Math.floor(Math.random() * videoArray.length)].video_id})
+    const randomvideoObject = videoArray[Math.floor(Math.random() * videoArray.length)]
+    this.setState({randomVideo: randomvideoObject})
+    this.setState((prevState) => ({
+      playedVideos: [...prevState.playedVideos, randomvideoObject]
+    }));
+    console.log(this.state.playedVideos)
   };
 
   chooseGenre = (event) => {
@@ -43,14 +48,17 @@ class VideoContainer extends Component {
   };
 
   skipSong = () => {
-
+    // generally like to build up list of visited songs
+    // later todo, auto skip songs once at end
+    // press button, serves you up new random video
+    // then records what that new video is
   };
 
   render() {
     return (
       <div>
         <iframe id="player" title="Rap instrumental" width="640" height="390"
-      src={`https://www.youtube.com/embed/${this.state.randomVideo}?autoplay=1&loop=1`}></iframe>
+      src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1&loop=1`}></iframe>
         <button onClick={this.skipSong}>Skip song</button>
         <button id="trap" onClick={this.chooseGenre}>Trap</button>
         <button id="boombap" onClick={this.chooseGenre}>Boombap</button>
