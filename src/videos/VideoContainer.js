@@ -4,7 +4,7 @@ class VideoContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {videos: [], filteredVideos: [], randomVideo: {}, playedVideos: []}
+    this.state = {videos: [], filteredVideos: [], randomVideo: {}}
   };
 
   componentDidMount() {
@@ -30,9 +30,9 @@ class VideoContainer extends Component {
     const randomvideoObject = videoArray[Math.floor(Math.random() * videoArray.length)]
     this.setState({randomVideo: randomvideoObject})
     this.setState((prevState) => ({
-      playedVideos: [...prevState.playedVideos, randomvideoObject]
+      videos: [...prevState.videos.filter(video => video !== randomvideoObject)],
+      filteredVideos: [...prevState.filteredVideos.filter(video => video !== randomvideoObject)]
     }));
-    console.log(this.state.playedVideos)
   };
 
   chooseGenre = (event) => {
@@ -48,10 +48,7 @@ class VideoContainer extends Component {
   };
 
   skipSong = () => {
-    // generally like to build up list of visited songs
-    // later todo, auto skip songs once at end
-    // press button, serves you up new random video
-    // then records what that new video is
+    this.randomiseVideo(this.state.filteredVideos)
   };
 
   render() {
@@ -73,3 +70,11 @@ class VideoContainer extends Component {
 };
 
 export default VideoContainer;
+
+// re render words
+// report video/add new video
+
+// previous state example!
+    // this.setState((prevState) => ({
+    //   playedVideos: [...prevState.playedVideos, randomvideoObject]
+    // }));
