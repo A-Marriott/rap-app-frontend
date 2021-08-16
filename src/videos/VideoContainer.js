@@ -70,12 +70,3 @@ class VideoContainer extends Component {
 };
 
 export default VideoContainer;
-
-// re render words
-// report video/add new video
-// refactor random words
-
-// previous state example!
-    // this.setState((prevState) => ({
-    //   playedVideos: [...prevState.playedVideos, randomvideoObject]
-    // }));
