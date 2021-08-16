@@ -73,6 +73,7 @@ export default VideoContainer;
 
 // re render words
 // report video/add new video
+// refactor random words
 
 // previous state example!
     // this.setState((prevState) => ({
