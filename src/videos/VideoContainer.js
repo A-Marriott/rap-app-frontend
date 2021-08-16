@@ -71,7 +71,7 @@ class VideoContainer extends Component {
         <iframe id="player" title="Rap instrumental" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}`}></iframe>
         <button onClick={this.skipSong}>Skip song</button>
         <button onClick={this.test}>TEST</button>
-        <button onClick={this.deleteVideo}>Delete video</button>
+        {/*<button onClick={this.deleteVideo}>Delete video</button>*/}
         <button id="trap" onClick={this.chooseGenre}>Trap</button>
         <button id="boombap" onClick={this.chooseGenre}>Boombap</button>
         <button id="drill" onClick={this.chooseGenre}>Drill</button>
