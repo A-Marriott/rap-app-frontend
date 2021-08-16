@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from "styled-components";
 
 class WordContainer extends Component {
 
@@ -40,7 +41,7 @@ class WordContainer extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <button onClick={this.randomiseWord}>Next word</button>
         <h1>{this.state.randomWord}</h1>
         <ul>
@@ -48,9 +49,14 @@ class WordContainer extends Component {
             return <li>{word["word"]}</li>
           })}
         </ul>
-      </div>
+      </Container>
     )
   }
 }
+
+const Container = styled.div`
+  flex-grow: 1;
+  flex-basis: 0;
+`;
 
 export default WordContainer;

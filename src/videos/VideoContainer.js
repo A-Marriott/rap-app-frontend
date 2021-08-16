@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from "styled-components";
 
 class VideoContainer extends Component {
 
@@ -60,12 +61,16 @@ class VideoContainer extends Component {
     this.randomiseVideo(this.state.filteredVideos)
   };
 
+  test = () => {
+    console.log(document.getElementsByClassName('ytp-time-current'))
+  }
+
   render() {
     return (
-      <div>
-        <iframe id="player" title="Rap instrumental" width="640" height="390"
-      src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1&loop=1`}></iframe>
+      <Container>
+        <iframe id="player" title="Rap instrumental" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}`}></iframe>
         <button onClick={this.skipSong}>Skip song</button>
+        <button onClick={this.test}>TEST</button>
         <button onClick={this.deleteVideo}>Delete video</button>
         <button id="trap" onClick={this.chooseGenre}>Trap</button>
         <button id="boombap" onClick={this.chooseGenre}>Boombap</button>
@@ -74,9 +79,14 @@ class VideoContainer extends Component {
         <button id="grime" onClick={this.chooseGenre}>Grime</button>
         <button id="jazz_rap" onClick={this.chooseGenre}>Jazz rap</button>
         <button id="random" onClick={this.chooseGenre}>Random</button>
-      </div>
+      </Container>
     )
   };
 };
+
+const Container = styled.div`
+  flex-grow: 1;
+  flex-basis: 0;
+`;
 
 export default VideoContainer;
