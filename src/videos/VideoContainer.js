@@ -26,6 +26,15 @@ class VideoContainer extends Component {
     });
   }
 
+  deleteVideo = () => {
+    // need to actually display whether video was deleted or not
+    fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
+    .then((response) => {
+        this.skipSong();
+      });
+  }
+
+
   randomiseVideo = (videoArray) => {
     const randomvideoObject = videoArray[Math.floor(Math.random() * videoArray.length)]
     this.setState({randomVideo: randomvideoObject})
@@ -57,6 +66,7 @@ class VideoContainer extends Component {
         <iframe id="player" title="Rap instrumental" width="640" height="390"
       src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1&loop=1`}></iframe>
         <button onClick={this.skipSong}>Skip song</button>
+        <button onClick={this.deleteVideo}>Delete video</button>
         <button id="trap" onClick={this.chooseGenre}>Trap</button>
         <button id="boombap" onClick={this.chooseGenre}>Boombap</button>
         <button id="drill" onClick={this.chooseGenre}>Drill</button>
