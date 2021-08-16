@@ -21,17 +21,16 @@ class WordContainer extends Component {
     .then((response) => response.json())
     .then((data) => {
       this.setState({words: data}, () => {
-        // this.randomiseWord
-        this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name}, () => {
-          this.getRhymingWords();
-        })
+        this.randomiseWord();
       })
     })
   }
 
-  // randomiseWord = () => {
-  //   this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name})
-  // };
+  randomiseWord = () => {
+    this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name}, () => {
+      this.getRhymingWords();
+    })
+  };
 
   getRhymingWords = () => {
     fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=50`)
@@ -39,15 +38,10 @@ class WordContainer extends Component {
     .then((data) => this.setState({rhymingWords: data}))
   }
 
-  skipWord = () => {
-    this.setState({randomWord: this.state.words[Math.floor(Math.random() * this.state.words.length)].name});
-    this.getRhymingWords();
-  }
-
   render() {
     return (
       <div>
-        <button onClick={this.skipWord}>Next word</button>
+        <button onClick={this.randomiseWord}>Next word</button>
         <h1>{this.state.randomWord}</h1>
         <ul>
           {this.state.rhymingWords.map((word, i) => {
