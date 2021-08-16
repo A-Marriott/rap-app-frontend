@@ -61,24 +61,21 @@ class VideoContainer extends Component {
     this.randomiseVideo(this.state.filteredVideos)
   };
 
-  test = () => {
-    console.log(document.getElementsByClassName('ytp-time-current'))
-  }
-
   render() {
     return (
       <Container>
-        <iframe id="player" title="Rap instrumental" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}`}></iframe>
-        <button onClick={this.skipSong}>Skip song</button>
-        <button onClick={this.test}>TEST</button>
-        {/*<button onClick={this.deleteVideo}>Delete video</button>*/}
-        <button id="trap" onClick={this.chooseGenre}>Trap</button>
-        <button id="boombap" onClick={this.chooseGenre}>Boombap</button>
-        <button id="drill" onClick={this.chooseGenre}>Drill</button>
-        <button id="lofi" onClick={this.chooseGenre}>Lofi</button>
-        <button id="grime" onClick={this.chooseGenre}>Grime</button>
-        <button id="jazz_rap" onClick={this.chooseGenre}>Jazz rap</button>
-        <button id="random" onClick={this.chooseGenre}>Random</button>
+        <ButtonGrid>
+          <Button id="trap" onClick={this.chooseGenre}>Trap</Button>
+          <Button id="boombap" onClick={this.chooseGenre}>Boombap</Button>
+          <Button id="drill" onClick={this.chooseGenre}>Drill</Button>
+          <Button id="lofi" onClick={this.chooseGenre}>Lofi</Button>
+          <Button id="grime" onClick={this.chooseGenre}>Grime</Button>
+          <Button id="jazz_rap" onClick={this.chooseGenre}>Jazz rap</Button>
+          <Button id="random" onClick={this.chooseGenre}>Random</Button>
+        </ButtonGrid>
+        <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
+        <Button onClick={this.skipSong}>Skip song</Button>
+        {/*<Button onClick={this.deleteVideo}>Delete video</Button>*/}
       </Container>
     )
   };
@@ -87,6 +84,34 @@ class VideoContainer extends Component {
 const Container = styled.div`
   flex-grow: 1;
   flex-basis: 0;
+`;
+
+const ButtonGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 15px;
+`;
+
+const YoutubePlayer = styled.iframe`
+  width:90%;
+  height:390px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+`;
+
+const Button = styled.button`
+  margin: auto;
+  width: 80px;
+  height: 24px;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  background: #4FB0C6;
+  transition: background 0.3s ease;
+  &:hover {
+    background: #3B889B;
+    cursor: pointer;
+  }
 `;
 
 export default VideoContainer;
