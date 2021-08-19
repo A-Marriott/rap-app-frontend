@@ -3,13 +3,17 @@ import './App.css';
 
 import WordContainer from './words/WordContainer';
 import VideoContainer from './videos/VideoContainer';
+import CreativePromptContainer from './creative_prompts/CreativePromptContainer';
 
 function App() {
   return (
     <div className="App">
       <Container>
       <VideoContainer></VideoContainer>
-      <WordContainer></WordContainer>
+      <div>
+        <CreativePromptContainer></CreativePromptContainer>
+        <WordContainer></WordContainer>
+      </div>
       </Container>
     </div>
   );
