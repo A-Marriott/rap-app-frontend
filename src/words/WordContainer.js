@@ -34,7 +34,7 @@ class WordContainer extends Component {
   };
 
   getRhymingWords = () => {
-    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=50`)
+    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=100`)
     .then((response) => response.json())
     .then((data) => this.setState({rhymingWords: data}))
   }
@@ -42,13 +42,13 @@ class WordContainer extends Component {
   render() {
     return (
       <Container>
-        <button onClick={this.randomiseWord}>Next word</button>
+        <Button onClick={this.randomiseWord}>Next word</Button>
         <h1>{this.state.randomWord}</h1>
-        <ul>
+        <WordGrid>
           {this.state.rhymingWords.map((word, i) => {
-            return <li>{word["word"]}</li>
+            return <p>{word["word"]}</p>
           })}
-        </ul>
+        </WordGrid>
       </Container>
     )
   }
@@ -58,5 +58,33 @@ const Container = styled.div`
   flex-grow: 1;
   flex-basis: 0;
 `;
+
+const Button = styled.button`
+  margin: auto;
+  width: 80px;
+  height: 24px;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  background: #4FB0C6;
+  transition: background 0.3s ease;
+  &:hover {
+    background: #3B889B;
+    cursor: pointer;
+  }
+`;
+
+const WordGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 2px solid black;
+  overflow: scroll;
+  margin-left: auto;
+  margin-right: auto;
+  height: 500px;
+  width: 90%;
+  margin-top: 24px;
+`;
+
 
 export default WordContainer;
