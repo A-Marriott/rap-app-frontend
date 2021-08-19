@@ -35,7 +35,7 @@ class VideoContainer extends Component {
   render() {
     return (
       <Container>
-        <p max-width="10px">{this.state.randomPrompt}</p>
+        <PromptText>{this.state.randomPrompt}</PromptText>
       </Container>
     )
   };
@@ -44,6 +44,10 @@ class VideoContainer extends Component {
 const Container = styled.div`
   flex-grow: 1;
   flex-basis: 0;
+`;
+
+const PromptText = styled.p`
+  max-width: 300px;
 `;
 
 export default VideoContainer;
