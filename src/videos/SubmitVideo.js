@@ -5,7 +5,14 @@ const SubmitVideo = () => {
   const [videoGenre, setVideoGenre] = useState('')
 
   const extractID = () => {
-    console.log(videoURL)
+    console.log(videoURL.indexOf('v='))
+    console.log(videoGenre)
+    // https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=C6-OYCprn2Q
+    // Use this link to check for valid id
+  }
+
+  const submit = () => {
+    extractID()
   }
 
   return (
@@ -17,28 +24,22 @@ const SubmitVideo = () => {
           type='text'
           name='videoURL'
           value={videoURL}
-          onChange={(e) => {
-            setVideoURL(e.target.value)
-            console.log(videoURL)
-          }}
+          onChange={(e) => setVideoURL(e.target.value)}
           />
       </div>
       <div>
         <label>Genre</label>
-        <select name="genre">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+        <select name="genre" value={videoGenre} onChange={(e) => setVideoGenre(e.target.value)}>
+          <option id="trap">Trap</option>
+          <option id="boombap">Boombap</option>
+          <option id="drill">Drill</option>
+          <option id="lofi">Lofi</option>
+          <option id="grime">Grime</option>
+          <option id="jazz_rap">Jazz Rap</option>
+          <option id="freestyle">Freestyle</option>
         </select>
-        <input
-          type='text'
-          name='genre'
-          value={null}
-          onChange={null}
-          />
       </div>
-      <button onClick={null}>Submit</button>
+      <button onClick={submit}>Submit</button>
     </div>
   )
 }
