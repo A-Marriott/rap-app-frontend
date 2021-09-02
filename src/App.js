@@ -9,19 +9,19 @@ function App() {
   return (
     <div className="App">
       <Container>
-      <VideoContainer></VideoContainer>
-      <div>
+        <VideoContainer></VideoContainer>
         <CreativePromptContainer></CreativePromptContainer>
         <WordContainer></WordContainer>
-      </div>
       </Container>
     </div>
   );
 }
 
 const Container = styled.div`
-  margin: 18px;
-  display: flex;
+  width: 80%;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default App;

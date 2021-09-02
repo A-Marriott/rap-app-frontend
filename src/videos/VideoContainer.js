@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
+import SubmitVideo from './SubmitVideo';
+
 class VideoContainer extends Component {
 
   constructor(props) {
@@ -74,7 +76,9 @@ class VideoContainer extends Component {
           <Button id="random" onClick={this.chooseGenre}>Random</Button>
         </ButtonGrid>
         <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
+        <div></div>
         <Button onClick={this.skipSong}>Skip song</Button>
+        <SubmitVideo></SubmitVideo>
         {/*<Button onClick={this.deleteVideo}>Delete video</Button>*/}
       </Container>
     )
