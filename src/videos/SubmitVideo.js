@@ -2,17 +2,39 @@ import React, { useState } from 'react';
 
 const SubmitVideo = () => {
   const [videoURL, setVideoURL] = useState('')
-  const [videoGenre, setVideoGenre] = useState('')
+  const [videoGenre, setVideoGenre] = useState('trap')
 
   const extractID = () => {
-    console.log(videoURL.indexOf('v='))
-    console.log(videoGenre)
-    // https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=C6-OYCprn2Q
-    // Use this link to check for valid id
+    const startingIndex = videoURL.indexOf('v=') + 2
+    const endingIndex = videoURL.indexOf('&') ? videoURL.indexOf('&') : 1000
+    return videoURL.substring(startingIndex, endingIndex)
   }
 
-  const submit = () => {
-    extractID()
+  const checkValidID = () => {
+    const videoID = extractID()
+    fetch(`https://frozen-harbor-11206.herokuapp.com/https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=${videoID}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        submit(videoID);
+      }
+    })
+  }
+
+  const submit = (videoID) => {
+    fetch('http://localhost:3000/api/v1/youtube_videos', {
+      method: 'post',
+      body: JSON.stringify({video_id: videoID, genre: videoGenre}),
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+    })
+    .then((response) => console.log(response))
   }
 
   return (
@@ -39,7 +61,7 @@ const SubmitVideo = () => {
           <option id="freestyle">Freestyle</option>
         </select>
       </div>
-      <button onClick={submit}>Submit</button>
+      <button onClick={checkValidID}>Submit</button>
     </div>
   )
 }
