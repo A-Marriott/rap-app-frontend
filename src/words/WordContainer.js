@@ -37,16 +37,20 @@ class WordContainer extends Component {
     fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=100`)
     .then((response) => response.json())
     .then((data) => this.setState({rhymingWords: data}))
-  }
+  };
+
+  capitalize = (string) => {
+    return string[0]?.toUpperCase() + string.slice(1)
+  };
 
   render() {
     return (
       <Container>
         <Button onClick={this.randomiseWord}>Next word</Button>
-        <h1>{this.state.randomWord}</h1>
+        <h1>{this.capitalize(this.state.randomWord)}</h1>
         <WordGrid>
           {this.state.rhymingWords.map((word, i) => {
-            return <p>{word["word"]}</p>
+            return <p>{this.capitalize(word["word"])}</p>
           })}
         </WordGrid>
       </Container>
