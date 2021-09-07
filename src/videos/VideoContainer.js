@@ -7,7 +7,7 @@ class VideoContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {videos: [], filteredVideos: [], randomVideo: {}}
+    this.state = {videos: [], filteredVideos: [], randomVideo: {}, displayNewVideoForm: false}
   };
 
   componentDidMount() {
@@ -63,6 +63,11 @@ class VideoContainer extends Component {
     this.randomiseVideo(this.state.filteredVideos)
   };
 
+  toggleDisplayNewVideoForm = () => {
+    this.setState({displayNewVideoForm: !this.state.displayNewVideoForm})
+    console.log(this.state.displayNewVideoForm)
+  };
+
   render() {
     return (
       <Container>
@@ -77,9 +82,14 @@ class VideoContainer extends Component {
         </ButtonGrid>
         <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
         <div></div>
-        <Button onClick={this.skipSong}>Skip song</Button>
-        <SubmitVideo></SubmitVideo>
-        {/*<Button onClick={this.deleteVideo}>Delete video</Button>*/}
+        <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+          <LargeButton onClick={this.skipSong}>Skip video</LargeButton>
+          <LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>
+          <LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>
+        </div>
+        {this.state.displayNewVideoForm &&
+          <SubmitVideo></SubmitVideo>
+        }
       </Container>
     )
   };
@@ -106,7 +116,7 @@ const YoutubePlayer = styled.iframe`
 const Button = styled.button`
   margin: auto;
   width: 80px;
-  height: 24px;
+  padding: 4px;
   color: white;
   border-radius: 4px;
   border: none;
@@ -117,5 +127,10 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
+
+const LargeButton = styled(Button)`
+  font-size: 24px;
+  width: 160px;
+`
 
 export default VideoContainer;
