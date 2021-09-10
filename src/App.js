@@ -36,7 +36,7 @@ const Container = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  margin-top: 30px;
+  margin-top: 32px;
   border-bottom: 2px solid #888888;
 `;
 

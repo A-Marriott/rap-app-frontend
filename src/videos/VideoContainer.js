@@ -48,46 +48,38 @@ class VideoContainer extends Component {
     return wordArray.join(' ')
   };
 
-  deleteVideo = () => {
-    // need to actually display whether video was deleted or not
-    fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
-    .then((response) => {
-        this.skipSong();
-      });
-  }
+  // deleteVideo = () => {
+  //   // need to actually display whether video was deleted or not
+  //   fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
+  //   .then((response) => {
+  //       this.skipSong();
+  //     });
+  // }
 
-  toggleDisplayNewVideoForm = () => {
-    this.setState({displayNewVideoForm: !this.state.displayNewVideoForm})
-    console.log(this.state.displayNewVideoForm)
-  };
+  // toggleDisplayNewVideoForm = () => {
+  //   this.setState({displayNewVideoForm: !this.state.displayNewVideoForm})
+  //   console.log(this.state.displayNewVideoForm)
+  // };
 
   render() {
     return (
-      <Container>
+      <div>
         <ButtonGrid>
           {this.genreList.map(genre => {
             return <Button id={genre} onClick={this.chooseGenre}>{this.capitalizeAndRemoveUnderscore(genre)}</Button>
           })}
         </ButtonGrid>
-        <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
-        <div></div>
-        <div>
-          <LargeButton onClick={() => this.randomiseVideo(this.state.filteredVideos)}>Skip video</LargeButton>
-          {/*<LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>*/}
-          {/*<LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>*/}
-        </div>
-        {this.state.displayNewVideoForm &&
+        <YoutubePlayer title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
+        <LargeButton onClick={() => this.randomiseVideo(this.state.filteredVideos)}>Skip video</LargeButton>
+        {/*<LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>*/}
+        {/*<LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>*/}
+        {/*{this.state.displayNewVideoForm &&
           <SubmitVideo></SubmitVideo>
-        }
-      </Container>
+        }*/}
+      </div>
     )
   };
 };
-
-const Container = styled.div`
-  flex-grow: 1;
-  flex-basis: 0;
-`;
 
 const ButtonGrid = styled.div`
   display: grid;
@@ -97,9 +89,9 @@ const ButtonGrid = styled.div`
 
 const YoutubePlayer = styled.iframe`
   width:100%;
-  height:390px;
+  height:60vh;
   margin-top: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 `;
 
 const Button = styled.button`
@@ -118,7 +110,7 @@ const Button = styled.button`
 `;
 
 const LargeButton = styled(Button)`
-  font-size: 24px;
+  font-size: 20px;
   width: 160px;
 `
 
