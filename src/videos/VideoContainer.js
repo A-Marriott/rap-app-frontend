@@ -7,6 +7,7 @@ class VideoContainer extends Component {
 
   constructor(props) {
     super(props)
+    this.genreList = ['trap', 'boombap', 'drill', 'lofi', 'grime', 'jazz_rap', 'random']
     this.state = {videos: [], filteredVideos: [], randomVideo: {}, displayNewVideoForm: false}
   };
 
@@ -39,6 +40,14 @@ class VideoContainer extends Component {
     })
   };
 
+  capitalizeAndRemoveUnderscore = (string) => {
+    let wordArray = []
+    string.split('_').forEach(word => {
+      wordArray.push(word[0]?.toUpperCase() + word.slice(1))
+    })
+    return wordArray.join(' ')
+  };
+
   deleteVideo = () => {
     // need to actually display whether video was deleted or not
     fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
@@ -56,13 +65,9 @@ class VideoContainer extends Component {
     return (
       <Container>
         <ButtonGrid>
-          <Button id="trap" onClick={this.chooseGenre}>Trap</Button>
-          <Button id="boombap" onClick={this.chooseGenre}>Boombap</Button>
-          <Button id="drill" onClick={this.chooseGenre}>Drill</Button>
-          <Button id="lofi" onClick={this.chooseGenre}>Lofi</Button>
-          <Button id="grime" onClick={this.chooseGenre}>Grime</Button>
-          <Button id="jazz_rap" onClick={this.chooseGenre}>Jazz rap</Button>
-          <Button id="random" onClick={this.chooseGenre}>Random</Button>
+          {this.genreList.map(genre => {
+            return <Button id={genre} onClick={this.chooseGenre}>{this.capitalizeAndRemoveUnderscore(genre)}</Button>
+          })}
         </ButtonGrid>
         <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
         <div></div>
