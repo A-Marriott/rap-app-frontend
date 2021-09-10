@@ -12,31 +12,17 @@ class VideoContainer extends Component {
 
   componentDidMount() {
     this.getVideos();
-  }
+  };
 
   getVideos = () => {
-    fetch("http://localhost:3000/api/v1/youtube_videos", {
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-      },
-    })
+    fetch("http://localhost:3000/api/v1/youtube_videos")
     .then((response) => response.json())
     .then((data) => {
       this.setState({videos: data, filteredVideos: data}, () => {
         this.randomiseVideo(this.state.filteredVideos);
       })
     });
-  }
-
-  deleteVideo = () => {
-    // need to actually display whether video was deleted or not
-    fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
-    .then((response) => {
-        this.skipSong();
-      });
-  }
-
+  };
 
   randomiseVideo = (videoArray) => {
     const randomvideoObject = videoArray[Math.floor(Math.random() * videoArray.length)]
@@ -48,20 +34,22 @@ class VideoContainer extends Component {
   };
 
   chooseGenre = (event) => {
-    if (event.target.id === 'random') {
-      this.setState({filteredVideos: this.state.videos}, () => {
-        this.randomiseVideo(this.state.filteredVideos)
-      })
-    } else {
-      this.setState({filteredVideos: this.state.videos.filter(video => video.genre === event.target.id)}, () => {
-        this.randomiseVideo(this.state.filteredVideos)
-      })
-    }
+    this.setState({filteredVideos: this.state.videos.filter(video => (event.target.id === 'random' ? true : video.genre === event.target.id))}, () => {
+      this.randomiseVideo(this.state.filteredVideos)
+    })
   };
 
   skipSong = () => {
     this.randomiseVideo(this.state.filteredVideos)
   };
+
+  deleteVideo = () => {
+    // need to actually display whether video was deleted or not
+    fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
+    .then((response) => {
+        this.skipSong();
+      });
+  }
 
   toggleDisplayNewVideoForm = () => {
     this.setState({displayNewVideoForm: !this.state.displayNewVideoForm})
