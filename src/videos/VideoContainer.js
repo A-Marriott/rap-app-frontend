@@ -16,7 +16,7 @@ class VideoContainer extends Component {
   };
 
   getVideos = () => {
-    fetch("http://localhost:3000/api/v1/youtube_videos")
+    fetch("https://rap-app-backend.herokuapp.com/api/v1/youtube_videos")
     .then((response) => response.json())
     .then((data) => {
       this.setState({videos: data, filteredVideos: data}, () => {
@@ -50,7 +50,7 @@ class VideoContainer extends Component {
 
   // deleteVideo = () => {
   //   // need to actually display whether video was deleted or not
-  //   fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
+  //   fetch(`https://rap-app-backend.herokuapp.com/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
   //   .then((response) => {
   //       this.skipSong();
   //     });

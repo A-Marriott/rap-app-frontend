@@ -26,7 +26,7 @@ const SubmitVideo = () => {
   }
 
   const submit = (videoID) => {
-    fetch('http://localhost:3000/api/v1/youtube_videos', {
+    fetch('https://rap-app-backend.herokuapp.com/api/v1/youtube_videos', {
       method: 'post',
       body: JSON.stringify({video_id: videoID, genre: videoGenre}),
       headers: {

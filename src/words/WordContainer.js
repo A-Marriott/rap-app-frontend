@@ -13,7 +13,7 @@ class WordContainer extends Component {
   }
 
   getWords = () => {
-    fetch("http://localhost:3000/api/v1/words", {
+    fetch("https://rap-app-backend.herokuapp.com/api/v1/words", {
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",

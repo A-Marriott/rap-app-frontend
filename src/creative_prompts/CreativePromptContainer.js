@@ -13,7 +13,7 @@ class VideoContainer extends Component {
   }
 
   getPrompts = () => {
-    fetch("http://localhost:3000/api/v1/creative_prompts")
+    fetch("https://rap-app-backend.herokuapp.com/api/v1/creative_prompts")
     .then((response) => response.json())
     .then((data) => {
       this.setState({prompts: data}, () => {
