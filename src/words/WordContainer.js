@@ -34,7 +34,7 @@ class WordContainer extends Component {
   };
 
   getRhymingWords = () => {
-    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=100`)
+    fetch(`https://rhymebrain.com/talk?function=getRhymes&word=${this.state.randomWord}&maxResults=50`)
     .then((response) => response.json())
     .then((data) => this.setState({rhymingWords: data}))
   };
@@ -83,11 +83,9 @@ const WordGrid = styled.div`
   grid-template-columns: repeat(5, 1fr);
   border: 2px solid black;
   overflow: scroll;
-  margin-left: auto;
-  margin-right: auto;
   height: 500px;
   width: 90%;
-  margin-top: 24px;
+  margin: 24px auto 60px auto;
 `;
 
 
