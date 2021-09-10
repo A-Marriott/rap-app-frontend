@@ -82,10 +82,10 @@ class VideoContainer extends Component {
         </ButtonGrid>
         <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
         <div></div>
-        <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+        <div>
           <LargeButton onClick={this.skipSong}>Skip video</LargeButton>
-          <LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>
-          <LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>
+          {/*<LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>*/}
+          {/*<LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>*/}
         </div>
         {this.state.displayNewVideoForm &&
           <SubmitVideo></SubmitVideo>
@@ -107,7 +107,7 @@ const ButtonGrid = styled.div`
 `;
 
 const YoutubePlayer = styled.iframe`
-  width:90%;
+  width:100%;
   height:390px;
   margin-top: 16px;
   margin-bottom: 16px;

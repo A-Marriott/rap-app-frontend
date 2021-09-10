@@ -47,7 +47,7 @@ const Container = styled.div`
 `;
 
 const PromptText = styled.p`
-  max-width: 300px;
+  font-size: 24px;
 `;
 
 export default VideoContainer;
