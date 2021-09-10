@@ -85,7 +85,7 @@ const WordGrid = styled.div`
   overflow: scroll;
   height: 500px;
   width: 90%;
-  margin: 24px auto 60px auto;
+  margin: 24px auto 0 auto;
 `;
 
 

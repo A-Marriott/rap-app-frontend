@@ -31,7 +31,7 @@ function App() {
 const Container = styled.div`
   width: 80%;
   text-align: center;
-  margin: 18px auto 0 auto;
+  margin: 18px auto 60px auto;
 `;
 
 const ButtonContainer = styled.div`
