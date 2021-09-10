@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import './App.css';
 
 import WordContainer from './words/WordContainer';
 import VideoContainer from './videos/VideoContainer';
@@ -18,7 +17,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div style={{textAlign: 'center'}}>
       <Container>
         <VideoContainer></VideoContainer>
         <div style={{display: 'flex', marginTop: '30px', borderBottom: '2px solid #888888'}}>
@@ -51,10 +50,5 @@ const Button = styled.button`
   font-size: 20px;
   width: 100%;
 `;
-
-const ButtonInactive = styled(Button)`
-  background: #4FB0C6;
-`;
-
 
 export default App;
