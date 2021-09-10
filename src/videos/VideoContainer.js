@@ -39,10 +39,6 @@ class VideoContainer extends Component {
     })
   };
 
-  skipSong = () => {
-    this.randomiseVideo(this.state.filteredVideos)
-  };
-
   deleteVideo = () => {
     // need to actually display whether video was deleted or not
     fetch(`http://localhost:3000/api/v1/youtube_videos/${this.state.randomVideo.id}`, { method: 'delete' })
@@ -71,7 +67,7 @@ class VideoContainer extends Component {
         <YoutubePlayer id="player" title="Rap instrumental" src={`https://www.youtube.com/embed/${this.state.randomVideo.video_id}?autoplay=1`}></YoutubePlayer>
         <div></div>
         <div>
-          <LargeButton onClick={this.skipSong}>Skip video</LargeButton>
+          <LargeButton onClick={() => this.randomiseVideo(this.state.filteredVideos)}>Skip video</LargeButton>
           {/*<LargeButton onClick={this.toggleDisplayNewVideoForm}>Add video</LargeButton>*/}
           {/*<LargeButton onClick={this.deleteVideo}>Delete video</LargeButton>*/}
         </div>
