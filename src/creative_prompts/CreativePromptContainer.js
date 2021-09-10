@@ -13,12 +13,7 @@ class VideoContainer extends Component {
   }
 
   getPrompts = () => {
-    fetch("http://localhost:3000/api/v1/creative_prompts", {
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-      },
-    })
+    fetch("http://localhost:3000/api/v1/creative_prompts")
     .then((response) => response.json())
     .then((data) => {
       this.setState({prompts: data}, () => {
@@ -33,18 +28,9 @@ class VideoContainer extends Component {
 
 
   render() {
-    return (
-      <Container>
-        <PromptText>{this.state.randomPrompt}</PromptText>
-      </Container>
-    )
+    return <PromptText>{this.state.randomPrompt}</PromptText>
   };
 };
-
-const Container = styled.div`
-  flex-grow: 1;
-  flex-basis: 0;
-`;
 
 const PromptText = styled.p`
   font-size: 24px;
