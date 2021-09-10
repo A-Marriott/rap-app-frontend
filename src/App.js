@@ -7,18 +7,14 @@ import VideoContainer from './videos/VideoContainer';
 import CreativePromptContainer from './creative_prompts/CreativePromptContainer';
 
 function App() {
-  const [promptDisplay, setPromptDisplay] = useState('word')
+  const [activeTab, setActiveTab] = useState('word')
 
-  // const thing = () => {
-  //   return <h1>hey</h1>
-  // }
+  let tabRender
 
-  let displayRender
-
-  if (promptDisplay === 'word') {
-    displayRender = <WordContainer></WordContainer>
-  } else if (promptDisplay === 'creative') {
-    displayRender = <CreativePromptContainer></CreativePromptContainer>
+  if (activeTab === 'word') {
+    tabRender = <WordContainer></WordContainer>
+  } else if (activeTab === 'creative') {
+    tabRender = <CreativePromptContainer></CreativePromptContainer>
   }
 
   return (
@@ -26,10 +22,10 @@ function App() {
       <Container>
         <VideoContainer></VideoContainer>
         <div style={{display: 'flex', marginTop: '30px', borderBottom: '2px solid #888888'}}>
-          <Button active={true} style={{borderRadius: '8px 0 0 0'}} onClick={() => setPromptDisplay('word')}>Word</Button>
-          <ButtonInactive style={{borderRadius: '0 8px 0 0'}} onClick={() => setPromptDisplay('creative')}>Creative prompt</ButtonInactive>
+          <Button style={{borderRadius: '8px 0 0 0', background: activeTab === 'word' ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)'}} onClick={() => setActiveTab('word')}>Word</Button>
+          <Button style={{borderRadius: '0 8px 0 0', background: activeTab === 'creative' ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)'}} onClick={() => setActiveTab('creative')}>Creative prompt</Button>
         </div>
-        {displayRender}
+        {tabRender}
       </Container>
     </div>
   );
@@ -48,20 +44,16 @@ const Button = styled.button`
   padding: 8px;
   color: white;
   border: none;
-  background: #4FB0C6;
   transition: background 0.3s ease;
   &:hover {
     cursor: pointer;
   }
   font-size: 20px;
   width: 100%;
-  ${({ inactive }) => inactive && `
-    background: red;
-  `}
 `;
 
 const ButtonInactive = styled(Button)`
-  background: rgba(79, 176, 198, 0.5);
+  background: #4FB0C6;
 `;
 
 
