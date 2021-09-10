@@ -17,24 +17,27 @@ function App() {
   }
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <Container>
-        <VideoContainer></VideoContainer>
-        <div style={{display: 'flex', marginTop: '30px', borderBottom: '2px solid #888888'}}>
-          <Button style={{borderRadius: '8px 0 0 0', background: activeTab === 'word' ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)'}} onClick={() => setActiveTab('word')}>Word</Button>
-          <Button style={{borderRadius: '0 8px 0 0', background: activeTab === 'creative' ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)'}} onClick={() => setActiveTab('creative')}>Creative prompt</Button>
-        </div>
-        {tabRender}
-      </Container>
-    </div>
+    <Container>
+      <VideoContainer></VideoContainer>
+      <ButtonContainer>
+        <Button position={'left'} active={activeTab === 'word'} onClick={() => setActiveTab('word')}>Word</Button>
+        <Button position={'right'} active={activeTab === 'creative'} onClick={() => setActiveTab('creative')}>Creative prompt</Button>
+      </ButtonContainer>
+      {tabRender}
+    </Container>
   );
 }
 
 const Container = styled.div`
   width: 80%;
-  margin-top: 18px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
+  margin: 18px auto 0 auto;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 30px;
+  border-bottom: 2px solid #888888;
 `;
 
 const Button = styled.button`
@@ -44,11 +47,13 @@ const Button = styled.button`
   color: white;
   border: none;
   transition: background 0.3s ease;
+  font-size: 20px;
+  width: 100%;
   &:hover {
     cursor: pointer;
   }
-  font-size: 20px;
-  width: 100%;
+  background: ${props => (props.active ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)')};
+  border-radius: ${props => (props.position === 'left' ? '8px 0 0 0' : '0 8px 0 0')};
 `;
 
 export default App;
