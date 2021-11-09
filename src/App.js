@@ -5,8 +5,6 @@ import WordContainer from "./words/WordContainer";
 import VideoContainer from "./videos/VideoContainer";
 import CreativePromptContainer from "./creative_prompts/CreativePromptContainer";
 
-//test comment
-
 function App() {
   const [activeTab, setActiveTab] = useState("word");
 
