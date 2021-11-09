@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import WordContainer from './words/WordContainer';
-import VideoContainer from './videos/VideoContainer';
-import CreativePromptContainer from './creative_prompts/CreativePromptContainer';
+import WordContainer from "./words/WordContainer";
+import VideoContainer from "./videos/VideoContainer";
+import CreativePromptContainer from "./creative_prompts/CreativePromptContainer";
+
+//test comment
 
 function App() {
-  const [activeTab, setActiveTab] = useState('word')
+  const [activeTab, setActiveTab] = useState("word");
 
-  let tabRender
+  let tabRender;
 
-  if (activeTab === 'word') {
-    tabRender = <WordContainer></WordContainer>
-  } else if (activeTab === 'creative') {
-    tabRender = <CreativePromptContainer></CreativePromptContainer>
+  if (activeTab === "word") {
+    tabRender = <WordContainer></WordContainer>;
+  } else if (activeTab === "creative") {
+    tabRender = <CreativePromptContainer></CreativePromptContainer>;
   }
 
   return (
     <Container>
       <VideoContainer></VideoContainer>
       <ButtonContainer>
-        <Button position={'left'} active={activeTab === 'word'} onClick={() => setActiveTab('word')}>Word</Button>
-        <Button position={'right'} active={activeTab === 'creative'} onClick={() => setActiveTab('creative')}>Creative prompt</Button>
+        <Button
+          position={"left"}
+          active={activeTab === "word"}
+          onClick={() => setActiveTab("word")}
+        >
+          Word
+        </Button>
+        <Button
+          position={"right"}
+          active={activeTab === "creative"}
+          onClick={() => setActiveTab("creative")}
+        >
+          Creative prompt
+        </Button>
       </ButtonContainer>
       {tabRender}
     </Container>
@@ -52,8 +66,10 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-  background: ${props => (props.active ? '#4FB0C6' : 'rgba(79, 176, 198, 0.5)')};
-  border-radius: ${props => (props.position === 'left' ? '8px 0 0 0' : '0 8px 0 0')};
+  background: ${(props) =>
+    props.active ? "#4FB0C6" : "rgba(79, 176, 198, 0.5)"};
+  border-radius: ${(props) =>
+    props.position === "left" ? "8px 0 0 0" : "0 8px 0 0"};
 `;
 
 export default App;
